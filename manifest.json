@@ -1,14 +1,13 @@
 {
   "applications": {
     "gecko": {
-      "id": "tbsync@jobisoft.de",
-      "strict_min_version": "68.0",
-      "strict_max_version": "69.*"
+      "id": "tbsync@experiments.addons.mozilla.org",
+      "strict_min_version": "68.0"
     }
   },
   "manifest_version": 2,
   "name": "TbSync",
-  "version": "2.5",
+  "version": "3.0",
   "author": "John Bieling",
   "homepage_url": "https://github.com/jobisoft/TbSync",
   "default_locale": "en-US",
@@ -16,11 +15,16 @@
   "icons": {
     "32": "skin/tbsync.png"
   },
-  "legacy": {
-    "type": "bootstrap",
-    "options": {
-      "page": "chrome://tbsync/content/manager/addonoptions.xul",
-      "open_in_tab": false
+  "background": {
+    "scripts": ["content/background.js"]
+  },  "experiment_apis": {
+    "tbsync": {
+      "schema": "schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["tbsync"]],
+        "script": "content/implementation.js"
+      }
     }
-  }
+  }  
 }
